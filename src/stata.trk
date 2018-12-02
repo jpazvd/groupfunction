@@ -1,0 +1,36 @@
+* 00000001
+*! version 1.0.0
+* Do not erase or edit this file
+* It is used by Stata to track the ado and help
+* files you have installed.
+
+S http://fmwww.bc.edu/repec/bocode/g
+N groupfunction.pkg
+D  2 Dec 2018
+U 1
+d 'GROUPFUNCTION': module to replace several basic collapse functions
+d 
+d     groupfunction Replaces several collapse functions (mean, sum,
+d variance, first, max, min).  The command is several orders of
+d magnitude faster than collapse.
+d 
+d KW: data management
+d KW: collapse
+d KW: descriptive statistics
+d 
+d Requires: Stata version 11.2
+d 
+d Distribution-Date: 20180419
+d 
+d Author: Paul Corral, World Bank
+d Support: email pcorralrodas@@worldbank.org
+d 
+d Author: Minh Cong Nguyen, World Bank
+d Support: email mnguyen3@@worldbank.org
+d 
+d Author: Joao Pedro Azevedo, World Bank
+d Support: email jazevedo@@worldbank.org
+d 
+f g\groupfunction.ado
+f g\groupfunction.sthlp
+e

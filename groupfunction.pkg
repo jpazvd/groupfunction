@@ -1,5 +1,5 @@
-v 0.0.0
-d 'GROUPFUNCTION' 
+v 1.0
+d 'GROUPFUNCTION': Stata module to replace several basic collapse functions
 d 
 d Distribution-Date: 
 d License: MIT

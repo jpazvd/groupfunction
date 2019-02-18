@@ -7,16 +7,16 @@ groupfunction Replaces several collapse functions (mean, sum, variance, first, m
 
 # Authors: 
 
-  **Paul Corral**
-  [pcorralrodas@worldbank.org](mailto:pcorralrodas@worldbank.org)
-  World Bank
+  **Paul Corral**  
+  [pcorralrodas@worldbank.org](mailto:pcorralrodas@worldbank.org)  
+  World Bank  
 
-  **Minh Cong Nguyen**
-  [mnguyen3@worldbank.org](mailto:mnguyen3@worldbank.org)
-  World Bank
+  **Minh Cong Nguyen**  
+  [mnguyen3@worldbank.org](mailto:mnguyen3@worldbank.org)  
+  World Bank  
 
-  **João Pedro Azevedo**
-  [jazevedo@worldbank.org](mailto:jazevedo@worldbank.org)
-  World Bank
-  [personal page](http://www.worldbank.org/en/about/people/j/joao-pedro-azevedo)
+  **João Pedro Azevedo**  
+  [jazevedo@worldbank.org](mailto:jazevedo@worldbank.org)  
+  World Bank  
+  [personal page](http://www.worldbank.org/en/about/people/j/joao-pedro-azevedo)  
 

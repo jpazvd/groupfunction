@@ -5,7 +5,7 @@
   groupfunction Replaces several collapse functions (mean, sum, variance, first, max, min). The command is several orders of magnitude faster than collapse.  
 
 
-# Authors: 
+## Authors: 
 
   **Paul Corral**  
   [pcorralrodas@worldbank.org](mailto:pcorralrodas@worldbank.org)  

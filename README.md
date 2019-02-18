@@ -18,5 +18,5 @@ World Bank
 João Pedro Azevedo
 [jazevedo@worldbank.org](mailto:jazevedo@worldbank.org)
 World Bank
-[personal page][http://www.worldbank.org/en/about/people/j/joao-pedro-azevedo]
+[personal page](http://www.worldbank.org/en/about/people/j/joao-pedro-azevedo)
 

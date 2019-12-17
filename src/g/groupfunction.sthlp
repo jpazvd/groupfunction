@@ -23,6 +23,12 @@
 {opt count(varlist)}
 {opt sd(varlist)}
 {opt variance(varlist)}
+{opt gini(varlist)}
+{opt theil(varlist)}
+{opt xtile(varlist)}
+{opt nq(int)}
+{opt missing}
+{opt norestore}
 
 {title:Description}
 
@@ -33,6 +39,12 @@
 
 {phang}
 {opt by(varlist)} Grouping for reporting estimates.
+
+{phang}
+{opt xtile(varlist)} Coupled with nq(), it creates variable with percentiles and adds it to the by() option.
+
+{phang}
+{opt nq(int)} Option only works when xtile() is specified. It indicates the number of quantiles.
 
 {phang}
 {opt mean(varlist)} Calculates means of specified variables.
@@ -60,6 +72,24 @@
 
 {phang}
 {opt variance(varlist)} Calculates variance of specified variables.
+
+{phang}
+{opt gini(varlist)} Calculates Gini coefficient of specified variables.
+
+{phang}
+{opt theil(varlist)} Calculates Theil coefficient of specified variables.
+
+{phang}
+{opt missing} This option is only relevant for sum and rawsum. If an entire group in by() is missing for the sum/rawsum variable the output will be missing instead of zero.
+
+{phang}
+{opt norestore} Drops all non-relevant variables before calculations to improve memory management. 
+
+{phang}
+{opt slow} Use this option if you run into memory issues, it will get values one by one.
+
+{phang}
+{opt merge} Requests that values are not to be collapsed, it instead merges the new vectors to the dataset in memory.
 
 {title:Example}
 sysuse auto, clear

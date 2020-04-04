@@ -1,5 +1,4 @@
-*! groupfunction (v.1.1)
-* 
+*! groupfunction
 * Paul Corral - World Bank Group 
 * Minh Nguyen - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 
@@ -9,7 +8,7 @@ cap prog drop groupfunction
 program define groupfunction, eclass
 	version 11.2, missing
 	#delimit;
-	syntax [aw pw fw] [if] [in], 
+	syntax [if] [in] [aw pw fw] , 
 	[
 	sum(varlist numeric)  
 	rawsum(varlist numeric) 
@@ -31,31 +30,19 @@ program define groupfunction, eclass
 	merge
 	];
 #delimit cr
-
-
 qui{
-
-	* make out observation 
-   mark `touse' `if' `in' [`weight'`exp']
-    markout `touse' 
-
-
-	if ("`by'"==""){
-		tempvar myby
-		gen `myby' = 1
-		local by `myby'
+if ("`by'"==""){
+	tempvar myby
+	gen `myby' = 1
+	local by `myby'
+	
+}
+if ("`xtile'"!="") local forby forby
+local wvar : word 2 of `exp'
+if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min' `count' `sd' `variance' `gini' `theil' `xtile' 
+	tempvar _useit _gr0up _thesort
+	marksample _useit
 		
-	}
-
-	if ("`xtile'"!="") local forby forby
-	
-	local wvar : word 2 of `exp'
-
-	if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min' `count' `sd' `variance' `gini' `theil' `xtile' 
-		tempvar _useit _gr0up _thesort
-		//gen `_thesort'   =_n
-		gen `_useit'	 = 1
-	
 	//save label
 	qui: label dir
 	local _allv `r(names)'
@@ -662,11 +649,24 @@ foreach x of local options{
 			dis in green "fgt``x'' : `_x0'"
 		}
 		else{
-			mata:p=_CPB`x'(y,w)
-			mata: st_local("_x0",strofreal(p))
-			return local `x' = `_x0'
-			
-			dis in green "`x' : `_x0'"
+			if ("`x'"=="gini"){
+				cap python: gini("`vlist'","`wvar'","`touse1'")
+				if (_rc!=0){
+					mata:p=_CPB`x'(y,w)
+					mata: st_local("_x0",strofreal(p))
+					return local `x' = `_x0'
+				} 
+				else{
+					return local `x' = r(gini)
+				}
+			}
+			else{
+				mata:p=_CPB`x'(y,w)
+				mata: st_local("_x0",strofreal(p))
+				return local `x' = `_x0'
+				
+				dis in green "`x' : `_x0'"
+			}
 		}	
 	}
 }	
@@ -751,6 +751,28 @@ function theexpanse(real matrix info, real matrix xx){
 
 }
 
+end
+
+//The below is ready to insert into and ado! Yay you!!
+python
+#import data command
+from sfi import Data
+#import numpy
+import numpy as np
+from numpy import cumsum
+from sfi import Scalar
+
+def gini(y,w, touse):
+	y = np.matrix(Data.get(y, selectvar=touse))
+	w = np.matrix(Data.get(w, selectvar=touse))
+	t = np.array(np.transpose(np.concatenate([y,w])))
+	t = t[t[:,0].argsort()]
+	y = t[:,0]
+	w= t[:,1]
+	yw = y*w
+	rxw = cumsum(yw) - yw/2
+	gini = 1-2*((np.transpose(rxw).dot(w)/np.transpose(y).dot(w))/sum(w))
+	Scalar.setValue("r(gini)", gini)
 end
 
 

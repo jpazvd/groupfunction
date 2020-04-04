@@ -1,4 +1,5 @@
-*! groupfunction
+*! groupfunction (v.1.1)
+* 
 * Paul Corral - World Bank Group 
 * Minh Nguyen - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 
@@ -8,7 +9,7 @@ cap prog drop groupfunction
 program define groupfunction, eclass
 	version 11.2, missing
 	#delimit;
-	syntax [aw pw fw] , 
+	syntax [aw pw fw] [if] [in], 
 	[
 	sum(varlist numeric)  
 	rawsum(varlist numeric) 
@@ -30,19 +31,30 @@ program define groupfunction, eclass
 	merge
 	];
 #delimit cr
+
+
 qui{
-if ("`by'"==""){
-	tempvar myby
-	gen `myby' = 1
-	local by `myby'
+
+	* make out observation 
+   mark `touse' `if' `in' [`weight'`exp']
+    markout `touse' 
+
+
+	if ("`by'"==""){
+		tempvar myby
+		gen `myby' = 1
+		local by `myby'
+		
+	}
+
+	if ("`xtile'"!="") local forby forby
 	
-}
-if ("`xtile'"!="") local forby forby
-local wvar : word 2 of `exp'
-if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min' `count' `sd' `variance' `gini' `theil' `xtile' 
-	tempvar _useit _gr0up _thesort
-	//gen `_thesort'   =_n
-	gen `_useit'	 = 1
+	local wvar : word 2 of `exp'
+
+	if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min' `count' `sd' `variance' `gini' `theil' `xtile' 
+		tempvar _useit _gr0up _thesort
+		//gen `_thesort'   =_n
+		gen `_useit'	 = 1
 	
 	//save label
 	qui: label dir

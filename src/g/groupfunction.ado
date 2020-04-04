@@ -1,4 +1,5 @@
-*! groupfunction
+*! groupfunction (v.11.3)
+* 
 * Paul Corral - World Bank Group 
 * Minh Nguyen - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 

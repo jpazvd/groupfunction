@@ -1,5 +1,8 @@
-*! groupfunction (v.11.3)
-* 
+*! version 2.0		(04 April 2020)		groupfunction
+*   option [in] [if] added
+*   phython Gini added
+* version 1.0  		(05 5December 2017) groupfunction
+*
 * Paul Corral - World Bank Group 
 * Minh Nguyen - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 
@@ -11,24 +14,24 @@ program define groupfunction, eclass
 	#delimit;
 	syntax [if] [in] [aw pw fw] , 
 	[
-	sum(varlist numeric)  
-	rawsum(varlist numeric) 
-	mean(varlist numeric) 
-	first(varlist numeric) 
-	max(varlist numeric) 
-	min(varlist numeric) 
-	count(varlist numeric) 
-	sd(varlist numeric) 
-	gini(varlist numeric) 
-	theil(varlist numeric)
-	VARiance(varlist numeric) 
-	by(varlist) 
-	norestore
-	xtile(varlist numeric)
-	nq(numlist max=1 int >0)
-	missing
-	slow
-	merge
+		sum(varlist numeric)  
+		rawsum(varlist numeric) 
+		mean(varlist numeric) 
+		first(varlist numeric) 
+		max(varlist numeric) 
+		min(varlist numeric) 
+		count(varlist numeric) 
+		sd(varlist numeric) 
+		gini(varlist numeric) 
+		theil(varlist numeric)
+		VARiance(varlist numeric) 
+		by(varlist) 
+		norestore
+		xtile(varlist numeric)
+		nq(numlist max=1 int >0)
+		missing
+		slow
+		merge
 	];
 #delimit cr
 qui{
@@ -593,7 +596,7 @@ function _fastcount(real matrix x, real matrix info) {
 
 end
 
-*! cpbcalc v1
+*! version 2.0		(21 March 2020)		cpbcalc 
 * Paul Corral - World Bank Group 
 * Jose Montes - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 

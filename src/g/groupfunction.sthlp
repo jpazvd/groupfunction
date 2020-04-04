@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0.0  5December2017}{...}
+{*! version 2.0 04 April 2020}{...}
 {cmd:help groupfunction}
 {hline}
 
@@ -12,7 +12,7 @@
 {title:Syntax}
 
 {p 8 23 2}
-{opt groupfunction}  {[aw pw fw]} {cmd:,}
+{opt groupfunction} [if] [in] [aw pw fw]  {cmd:,}
 {opt by(varlist)}
 {opt mean(varlist)}
 {opt sum(varlist)}

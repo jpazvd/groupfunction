@@ -1,4 +1,8 @@
-*! groupfunction
+*! version 2.1		(Jan 27, 2021)		groupfunction
+*   option [in] [if] added
+*   phython Gini added
+* version 1.0  		(05 5December 2017) groupfunction
+*
 * Paul Corral - World Bank Group 
 * Minh Nguyen - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 

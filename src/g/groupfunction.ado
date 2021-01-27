@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 *! version 2.1		(Jan 27, 2021)		groupfunction
 *   option [in] [if] added
 *   phython Gini added
@@ -788,6 +791,7 @@ if _rc==0{
 
 
 
+<<<<<<< Updated upstream
 =======
 *! groupfunction
 * Paul Corral - World Bank Group 
@@ -1575,3 +1579,5 @@ if _rc==0{
 
 
 >>>>>>> dev
+=======
+>>>>>>> Stashed changes

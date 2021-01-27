@@ -6,7 +6,7 @@
 *
 * Paul Corral - World Bank Group 
 * Minh Nguyen - World Bank Group 
-* Joao Pedro Azevedo - World Bank Group 
+* Joao Pedro Azevedo - World Bank Group
 
 
 cap prog drop groupfunction

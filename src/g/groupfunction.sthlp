@@ -1,5 +1,5 @@
 {smcl}
-{*! version 2.0 04 April 2020}{...}
+{*! version 2.1.1 27 January 2020}{...}
 {cmd:help groupfunction}
 {hline}
 

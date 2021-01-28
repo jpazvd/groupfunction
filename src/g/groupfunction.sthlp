@@ -1,6 +1,7 @@
 {smcl}
-{*! version 2.1.1 27 January 2020}{...}
-{cmd:help groupfunction}
+{hline}
+{cmd:help groupfunction}{right:v2.2 28/Jan/2021}
+
 {hline}
 
 {title:Title}
@@ -92,10 +93,13 @@
 {opt merge} Requests that values are not to be collapsed, it instead merges the new vectors to the dataset in memory.
 
 {title:Example}
-sysuse auto, clear
-groupfunction [aw=weight], mean(price) min(weight) by(foreign)
+
+{p 8 12}{stata "sysuse auto, clear" :. sysuse auto, clear}{p_end}
+
+{p 8 12}{stata "groupfunction [aw=weight], mean(price) min(weight) by(foreign)" :. groupfunction [aw=weight], mean(price) min(weight) by(foreign)}{p_end}
 
 {title:Example 2 (Time comparisons)}
+
 clear all
 set more off
 set obs 300000

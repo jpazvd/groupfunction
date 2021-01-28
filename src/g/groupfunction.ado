@@ -1,6 +1,8 @@
-*! version 2.1.1		(27 Jan 2021)		groupfunction
-*   fix potential Python error: “IndentationError: unexpected indent” 
-*   	Python indetention removed.
+*!version 2.2		(28 Jan 2021)	
+* Fixed python code, added from __main__ import gini
+* version 2.1.1		(27 Jan 2021)	
+*   fix python indetention
+* version 2.0		(04 April 2020)		groupfunction
 *   option [in] [if] added
 * version 2.0		(04 Apr 2020)		
 *   phython Gini added
@@ -17,24 +19,24 @@ program define groupfunction, eclass
 	#delimit;
 	syntax [if] [in] [aw pw fw] , 
 	[
-	sum(varlist numeric)  
-	rawsum(varlist numeric) 
-	mean(varlist numeric) 
-	first(varlist numeric) 
-	max(varlist numeric) 
-	min(varlist numeric) 
-	count(varlist numeric) 
-	sd(varlist numeric) 
-	gini(varlist numeric) 
-	theil(varlist numeric)
-	VARiance(varlist numeric) 
-	by(varlist) 
-	norestore
-	xtile(varlist numeric)
-	nq(numlist max=1 int >0)
-	missing
-	slow
-	merge
+		sum(varlist numeric)  
+		rawsum(varlist numeric) 
+		mean(varlist numeric) 
+		first(varlist numeric) 
+		max(varlist numeric) 
+		min(varlist numeric) 
+		count(varlist numeric) 
+		sd(varlist numeric) 
+		gini(varlist numeric) 
+		theil(varlist numeric)
+		VARiance(varlist numeric) 
+		by(varlist) 
+		norestore
+		xtile(varlist numeric)
+		nq(numlist max=1 int >0)
+		missing
+		slow
+		merge
 	];
 #delimit cr
 qui{
@@ -599,7 +601,7 @@ function _fastcount(real matrix x, real matrix info) {
 
 end
 
-*! cpbcalc v1
+*! version 2.0		(21 March 2020)		cpbcalc 
 * Paul Corral - World Bank Group 
 * Jose Montes - World Bank Group 
 * Joao Pedro Azevedo - World Bank Group 
@@ -657,13 +659,15 @@ foreach x of local options{
 		}
 		else{
 			if ("`x'"=="gini"){
-				cap python: gini("`vlist'","`wvar'","`touse1'")
-				if (_rc!=0){
+				cap python: from __main__ import gini ; gini("`vlist'","`wvar'","`touse1'")
+				if _rc!=0{
+					display as error "No Python :("
 					mata:p=_CPB`x'(y,w)
 					mata: st_local("_x0",strofreal(p))
 					return local `x' = `_x0'
 				} 
 				else{
+				    display as error "Yay Python!"
 					return local `x' = r(gini)
 				}
 			}
@@ -764,15 +768,12 @@ end
 cap python query
 
 if _rc==0{
-	
 python
-#import data command
 from sfi import Data
-#import numpy
 import numpy as np
 from numpy import cumsum
 from sfi import Scalar
-	
+
 def gini(y,w, touse):
 	y = np.matrix(Data.get(y, selectvar=touse))
 	w = np.matrix(Data.get(w, selectvar=touse))
@@ -787,4 +788,8 @@ def gini(y,w, touse):
 end
 
 }
+
+//		groupfunction [aw=weight], sum(`todosaqui2' `pptarsa') mean(`pp1' `ppcovsa' `ppadsa' `ppdepsa' `pppov0' `pppov1' `pppov2' `todosaqui' `medexp_red' `fullcredit2016' `tax_owed0' `agtax' `discount') by(decile) rawsum
+
+
 

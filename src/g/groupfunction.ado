@@ -1,4 +1,9 @@
 *! version 2.1.1		(27 Jan 2021)		groupfunction
+<<<<<<< HEAD
+=======
+*   fix potential Python error: “IndentationError: unexpected indent” 
+*   	Python indetention removed.
+>>>>>>> debug
 *   option [in] [if] added
 * version 2.0		(04 Apr 2020)		
 *   phython Gini added
@@ -760,33 +765,31 @@ end
 
 //The below is ready to insert into and ado! Yay you!!
 cap python query
+
 if _rc==0{
-	python
-	#import data command
-	from sfi import Data
-	#import numpy
-	import numpy as np
-	from numpy import cumsum
-	from sfi import Scalar
 	
-	def gini(y,w, touse):
-		y = np.matrix(Data.get(y, selectvar=touse))
-		w = np.matrix(Data.get(w, selectvar=touse))
-		t = np.array(np.transpose(np.concatenate([y,w])))
-		t = t[t[:,0].argsort()]
-		y = t[:,0]
-		w= t[:,1]
-		yw = y*w
-		rxw = cumsum(yw) - yw/2
-		gini = 1-2*((np.transpose(rxw).dot(w)/np.transpose(y).dot(w))/sum(w))
-		Scalar.setValue("r(gini)", gini)
-	end
+python
+#import data command
+from sfi import Data
+#import numpy
+import numpy as np
+from numpy import cumsum
+from sfi import Scalar
+	
+def gini(y,w, touse):
+	y = np.matrix(Data.get(y, selectvar=touse))
+	w = np.matrix(Data.get(w, selectvar=touse))
+	t = np.array(np.transpose(np.concatenate([y,w])))
+	t = t[t[:,0].argsort()]
+	y = t[:,0]
+	w= t[:,1]
+	yw = y*w
+	rxw = cumsum(yw) - yw/2
+	gini = 1-2*((np.transpose(rxw).dot(w)/np.transpose(y).dot(w))/sum(w))
+	Scalar.setValue("r(gini)", gini)
+end
+
 }
-
-
-//		groupfunction [aw=weight], sum(`todosaqui2' `pptarsa') mean(`pp1' `ppcovsa' `ppadsa' `ppdepsa' `pppov0' `pppov1' `pppov2' `todosaqui' `medexp_red' `fullcredit2016' `tax_owed0' `agtax' `discount') by(decile) rawsum
-
-
 
 >>>>>>> dev
 =======

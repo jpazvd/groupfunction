@@ -1,6 +1,8 @@
-*!version 2.1.1		(27 Jan 2021)	
+*!version 2.2		(28 Jan 2021)	
 * Fixed python code, added from __main__ import gini
-*version 2.0		(04 April 2020)		groupfunction
+* version 2.1.1		(27 Jan 2021)	
+*   fix python indetention
+* version 2.0		(04 April 2020)		groupfunction
 *   option [in] [if] added
 *   phython Gini added
 * version 1.0  		(05 5December 2017) groupfunction

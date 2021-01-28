@@ -1,6 +1,6 @@
 {smcl}
-{*! version 2.1.1 27 January 2020}{...}
-{cmd:help groupfunction}
+{cmd:help groupfunction}{right:{v2.2 28/Jan/2021}
+}
 {hline}
 
 {title:Title}

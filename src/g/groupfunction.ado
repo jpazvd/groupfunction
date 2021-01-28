@@ -1,9 +1,6 @@
 *! version 2.1.1		(27 Jan 2021)		groupfunction
-<<<<<<< HEAD
-=======
 *   fix potential Python error: “IndentationError: unexpected indent” 
 *   	Python indetention removed.
->>>>>>> debug
 *   option [in] [if] added
 * version 2.0		(04 Apr 2020)		
 *   phython Gini added
@@ -791,6 +788,3 @@ end
 
 }
 
->>>>>>> dev
-=======
->>>>>>> Stashed changes

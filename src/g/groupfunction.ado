@@ -48,6 +48,13 @@ if ("`by'"==""){
 	local by `myby'
 	
 }
+else{
+	foreach var of local by{
+		cap confirm string variable `var'
+		if (_rc==0) replace `var' = "_missing" if missing(`var')
+		else replace `var' = .z if missing(`var')
+	}
+}
 if ("`xtile'"!="") local forby forby
 local wvar : word 2 of `exp'
 if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min' `count' `sd' `variance' `gini' `theil' `xtile' 
@@ -61,14 +68,14 @@ if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min
 		local Nm: val lab `x'
 	
 		if ("`Nm'"!=""){
-		local l: value label `x'
-		local vallabs "`vallabs' `l'"
+			local l: value label `x'
+			local vallabs "`vallabs' `l'"
 		}
 	}
 	local vallabs: list vallabs & _allv
 	if ("`vallabs'"!=""){
-	tempfile labeldo
-	label save `vallabs' using `labeldo', replace
+		tempfile labeldo
+		label save `vallabs' using `labeldo', replace
 	}
 	
 	//Weights
@@ -148,7 +155,8 @@ if ("`norestore'"!="") keep `wvar' `by' `sum' `rawsum' `mean' `first' `max' `min
 		
 		foreach hi of local myforby{
 			tempvar _myby
-			gen `_myby' = `thearea'==`hi'
+			cap: gen `_myby' = `thearea'==`hi'
+			if _rc gen `_myby' = `thearea'=="`hi'"
 			mata: w=st_data(.,tokens("`wvar'"),"`_myby'")	
 			mata: st_view(__i=.,.,tokens("`xtile'"),"`_myby'")		
 			mata:__i[.,.] =_fpctilebig(__i,1,`nq',w)	
